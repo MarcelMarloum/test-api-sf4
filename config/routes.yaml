@@ -1,0 +1,3 @@
+astronauts:
+    path: /astronauts
+    controller: App\Controller\AstronautController::getAstronautsAction

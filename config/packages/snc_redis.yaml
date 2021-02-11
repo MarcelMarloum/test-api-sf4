@@ -1,0 +1,47 @@
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: "redis://%env(REDIS_HOST)%"
+            logging: '%kernel.debug%'
+        session:
+            type: predis
+            alias: session
+            dsn: "redis://%env(REDIS_HOST)%"
+        cache:
+            type: predis
+            alias: cache
+            dsn: "redis://%env(REDIS_HOST)%"
+            logging: false
+        profiler_storage:
+            type: predis
+            alias: profiler_storage
+            dsn: "redis://%env(REDIS_HOST)%"
+            logging: true
+        doctrine:
+            type: predis
+            alias: doctrine
+            dsn: "redis://%env(REDIS_HOST)%"
+    session:
+        client: session
+        prefix: session
+        ttl: 3600
+#    cache:
+#        client: cache
+#        prefix: cache
+#        ttl: 3600
+    doctrine:
+        metadata_cache:
+            client: doctrine
+            entity_manager: default
+            document_manager: default
+        result_cache:
+            client: doctrine
+            entity_manager: default
+        query_cache:
+            client: doctrine
+            entity_manager: default
+    profiler_storage:
+        client: profiler_storage
+        ttl: 3600
